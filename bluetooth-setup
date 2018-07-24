@@ -1,0 +1,16 @@
+#!/usr/bin/env bash
+
+# check if software is running on BBBW
+board=$(tr -d '\0' < /proc/device-tree/model) # remove null byte at end
+if [ "$board" != "TI AM335x BeagleBone Black Wireless" ]; then
+  echo "not BeagleBone Black Wireless"
+  exit 1
+fi
+
+# enable BT module
+echo 28 > /sys/class/gpio/export
+echo out > /sys/class/gpio/gpio28/direction
+echo 1 > /sys/class/gpio/gpio28/value
+
+# attach port
+hciattach /dev/ttyS3 texas 300000

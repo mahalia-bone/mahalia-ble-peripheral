@@ -1,0 +1,13 @@
+Source: mahalia-ble-peripheral
+Priority: optional
+Section: sound
+Maintainer: Christopher Obbard <chris@64studio.com>
+Build-Depends: debhelper (>= 10), ca-certificates, curl, libbluetooth-dev, libudev-dev, python
+Standards-Version: 3.9.8
+
+Package: mahalia-ble-peripheral
+Architecture: armhf
+Pre-Depends: mahalia-utils, bluetooth, firmware-ti-connectivity
+Depends: ${misc:Depends}, nodejs
+Description: Mahalia BLE Peripheral
+ Bluetooth Low Energy Peripheral service for Mahalia

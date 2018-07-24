@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+# check if software is running on BBBW
+board=$(tr -d '\0' < /proc/device-tree/model) # remove null byte at end
+if [ "$board" != "TI AM335x BeagleBone Black Wireless" ]; then
+  echo "not BeagleBone Black Wireless"
+  exit 1
+fi
+
+# start script
+cd /usr/share/mahalia-ble-peripheral
+node mahalia-ble-peripheral.js

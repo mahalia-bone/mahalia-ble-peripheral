@@ -1,0 +1,8 @@
+bluetooth-setup usr/share/mahalia-ble-peripheral
+mahalia-ble-peripheral usr/share/mahalia-ble-peripheral
+mahalia-ble-peripheral.js usr/share/mahalia-ble-peripheral
+package.json usr/share/mahalia-ble-peripheral
+
+node_modules/* usr/share/mahalia-ble-peripheral/node_modules
+
+ti-bluetooth-firmware/TIInit_11.8.32.bts lib/firmware/ti-connectivity

@@ -1,0 +1,24 @@
+#!/usr/bin/make -f
+
+%:
+	dh $@
+
+# install node modules using npm
+override_dh_auto_build:
+	debian/npm-install.sh
+
+# install service
+#override_dh_installsystemd:
+#	dh_installsystemd -pmahalia-ble-peripheral --name=mahalia-ble-peripheral mahalia-ble-peripheral.mahalia-ble-peripheral.service
+#	dh_installsystemd -pmahalia-ble-peripheral --name=bluetooth-setup mahalia-ble-peripheral.bluetooth-setup.service
+override_dh_installinit:
+	dh_systemd_enable -pmahalia-ble-peripheral --name=mahalia-ble-peripheral mahalia-ble-peripheral.service
+	dh_systemd_enable -pmahalia-ble-peripheral --name=bluetooth-setup bluetooth-setup.service
+	dh_installinit -pmahalia-ble-peripheral
+	dh_installinit -pmahalia-ble-peripheral --name=mahalia-ble-peripheral
+	dh_installinit -pmahalia-ble-peripheral --name=bluetooth-setup
+	dh_systemd_start -pmahalia-ble-peripheral mahalia-ble-peripheral.service --no-restart-on-upgrade
+	dh_systemd_start -pmahalia-ble-peripheral bluetooth-setup.service --no-restart-on-upgrade
+
+# supress warnings
+override_dh_shlibdeps: ;

@@ -1,0 +1,11 @@
+[Unit]
+Description="TI Bluetooth Initialise"
+After=mahalia-setup.service bluetooth.target
+
+[Service]
+Type=forking
+TimeoutStartSec=0
+ExecStart=/usr/share/mahalia-ble-peripheral/bluetooth-setup
+
+[Install]
+WantedBy=multi-user.target

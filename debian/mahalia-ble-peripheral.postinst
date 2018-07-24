@@ -1,0 +1,11 @@
+#!/bin/sh
+
+# disable bluetooth daemon
+deb-systemd-invoke disable bluetooth.service
+
+# enable mahalia-ble-peripheral service
+deb-systemd-invoke enable mahalia-ble-peripheral.service
+deb-systemd-invoke enable bluetooth-setup.service
+
+
+exit 0
