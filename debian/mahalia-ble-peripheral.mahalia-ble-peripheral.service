@@ -1,6 +1,6 @@
 [Unit]
 Description="Mahalia BLE Peripheral"
-After=bluetooth-setup.service
+After=bluetooth-setup.service mahalia.service
 
 [Service]
 TimeoutStartSec=0

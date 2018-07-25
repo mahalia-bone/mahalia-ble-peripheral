@@ -7,6 +7,11 @@ if [ "$board" != "TI AM335x BeagleBone Black Wireless" ]; then
   exit 1
 fi
 
+# wait for mha port to open
+while ! nc -z localhost 33337; do
+  sleep 5
+done
+
 # start script
 cd /usr/share/mahalia-ble-peripheral
 node mahalia-ble-peripheral.js
