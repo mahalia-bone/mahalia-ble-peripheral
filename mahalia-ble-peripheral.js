@@ -115,24 +115,24 @@ var bleCharacteristics = [
 
             // disable Wi-Fi
             if (tmp == '0') {
-                exec('systemctl stop hostapd', function (error, stdout, stderr) {
-                    console.log('[BLE] [Wi-Fi] stop stdout: ' + stdout);
-                    console.log('[BLE] [Wi-Fi] stop stderr: ' + stdout);
+                exec('systemctl start mahalia-wifidisable', function (error, stdout, stderr) {
+                    console.log('[BLE] [Wi-Fi] start stdout: ' + stdout);
+                    console.log('[BLE] [Wi-Fi] start stderr: ' + stdout);
                 });
 
-                exec('systemctl disable hostapd', function (error, stdout, stderr) {
+                exec('systemctl enable mahalia-wifidisable', function (error, stdout, stderr) {
                     console.log('[BLE] [Wi-Fi] disable stdout: ' + stdout);
                     console.log('[BLE] [Wi-Fi] disable stderr: ' + stdout);
                 });
             }
             // enable Wi-Fi
             if (tmp == '1') {
-                exec('systemctl start hostapd', function (error, stdout, stderr) {
+                exec('systemctl stop mahalia-wifidisable', function (error, stdout, stderr) {
                     console.log('[BLE] [Wi-Fi] start stdout: ' + stdout);
                     console.log('[BLE] [Wi-Fi] start stderr: ' + stdout);
                 });
 
-                exec('systemctl enable hostapd', function (error, stdout, stderr) {
+                exec('systemctl disable mahalia-wifidisable', function (error, stdout, stderr) {
                     console.log('[BLE] [Wi-Fi] enable stdout: ' + stdout);
                     console.log('[BLE] [Wi-Fi] enable stderr: ' + stdout);
                 });
