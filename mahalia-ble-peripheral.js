@@ -10,6 +10,7 @@
 
 // import modules & functions
 var bleno = require('bleno');
+var fs = require('fs');
 var net = require('net');
 const { exec } = require('child_process');
 
@@ -21,6 +22,9 @@ var mhaTempData = [];
 
 // the name shown to clients
 var bleLocalName = 'Mahalia';
+
+// file containing the serial number
+var bbSerialPath = '/tmp/bb_serial';
 
 // BLE service UUIDs
 //  bleServiceUUIDs[0] is the Mahalia service
@@ -34,6 +38,10 @@ var bleCharacteristicUUIDs = ['34cd', '56ef'];
 // the maximum amount of bytes to transfer over the BLE interface
 var bleMaxBytes = 100;
 
+
+// append the serial number to the BLE device name
+if (fs.existsSync(bbSerialPath))
+    bleLocalName += '_' + fs.readFileSync('/tmp/bb_serial');
 
 // connect to the local openMHA socket interface
 //   (only one socket is in use)
